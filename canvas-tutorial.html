@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas Demo</title>
+  <script>
+    window.onload = function(){
+      var canvas = document.getElementById("paper"),
+          c = canvas.getContext("2d");
+      
+      c.fillStyle = "black";
+      c.fillRect(0, 0, canvas.width, canvas.height);
+      
+      c.fillStyle = "red";
+      c.fillRect(20, 20, 50, 50);
+      
+      c.strokeStyle= 'white';
+      c.lineWidth = 10;
+      c.strokeRect(20, 20, 50, 50);
+      
+      c.strokeStyle = "#7e9fe2";
+      c.lineWidth = 5;
+  
+      c.fillStyle = "#661666";
+      c.beginPath();
+      c.moveTo(100,100);
+      c.lineTo(150,200);
+      c.lineTo(200,200);
+      c.lineTo(200,250);
+      c.lineTo(100,250);
+      c.closePath();
+      // 채우기 안쪽 외곽선이 바깥쪽.
+      // c.fill();
+      // c.stroke();
+      
+      // 채우기 바깥쪽 외곽선이 안쪽.
+      c.stroke();
+      c.fill();
+ 
+      c.fillStyle = "white";
+      c.font = "50px Helvetica";
+      c.fillText("Hello", 300, 200);
+      
+      c.beginPath();
+      // c.arc(x좌표, y좌표, 시작점(단위는 라디안), 끝점(라디안), 채우기 방향)
+      c.arc(200, 340, 50, 0, Math.PI * 2, false);
+      c.fill();
+      
+      var posX = 0,
+          posY = 200;
+      setInterval(function(){
+        
+        posX += 4;
+        
+        if (posX > 200){
+          posY += 3;
+          // posX = 200; // 사선으로 진행하지 않고 아래쪽으로 꺾이게 됨.
+        }
+        
+        // c.fillStyle = "black";
+        // c.fillStyle = "rgba(0,0,0,0.5)";
+        c.fillStyle = "rgba(0,0,0,0.04)";
+        c.fillRect(0, 0, canvas.width, canvas.height);
+  
+        c.fillStyle = "White";
+        c.beginPath();
+        c.arc(posX, posY, 50, 0, Math.PI * 2, false);
+        c.fill();
+  
+      }, 30);
+      
+    };
+  </script>
+</head>
+<body>
+  <canvas id="paper" width="500" height="500">
+    Go get chrome!
+  </canvas>
+</body>
+</html>
